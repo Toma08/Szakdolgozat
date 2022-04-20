@@ -24,61 +24,116 @@ fetch('../server/audio.php')
   loadData(data)
 
 })
+
+
+
+
+
 let audioSources=[]
 
+
 function feltolt(data){
+    document.querySelector('select').addEventListener('change',myFilter)
+    let c=""
     audioSources=[]
     let content = ""
-      for(let obj of data){
-          console.log(obj.name);
-        audioSources.push(new Audio(obj.url))
-        content += `<div class="nav2">
-                        <div class="box">
-                            <div class="imgdiv">
-                                <img src="coverpic1.png">
-                                <div class="Scriptcontent">
-                                    <div class="audio-player" style="margin: 0 auto">
-                                        <div class="timeline">
-                                            <div class="progress"></div>
-                                        </div>
-                                        <div class="controls">
-                                            <div class="play-container">
-                                                <div class="toggle-play play"></div>
-                                            </div>
-                                            <div class="time">
-                                                <div class="current">0:00</div>
-                                                <div class="divider">/</div>
-                                                <div class="length"></div>
-                                            </div>
-                                            <div class="name">Music Song</div>
-                                            <div class="volume-container">
-                                                <div class="volume-button">
-                                                    <div class="volume icono-volumeMedium"></div>
-                                                </div>
-                                                <div class="volume-slider">
-                                                    <div class="volume-percentage"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="play">
-                                <p>Name: ${obj.name}</p>
-                                <p> Genre: ${obj.genre}</p>
-                            </div>
-                        </div>
-                    </div>`
-      }
-      mainDiv.innerHTML = content
+    
+    
+
+   
+                
+  
+
+        for(let obj of data){
+
+           
+            
+            //console.log(obj.name);
+          audioSources.push(new Audio(obj.url))
+          content += `
+  
+                          <div class="nav2 col-lg p-0  ">
+                          
+                              <div class="box ">
+                                  <div class="imgdiv">
+                                      <img src="${obj.cpic} ">
+                                      +<div class="Scriptcontent">
+                                          <div class="audio-player" style="margin: 0 auto">
+                                              <div class="timeline">
+                                                  <div class="progress"></div>
+                                              </div>
+                                              <div class="controls">
+                                                  <div class="play-container">
+                                                      <div class="toggle-play play"></div>
+                                                  </div>
+                                                  <div class="time">
+                                                      <div class="current">0:00</div>
+                                                      <div class="divider">/</div>
+                                                      <div class="length"></div>
+                                                  </div>
+                                                  <div class="name">Music Song</div>
+                                                  <div class="volume-container">
+                                                      <div class="volume-button">
+                                                          <div class="volume icono-volumeMedium"></div>
+                                                      </div>
+                                                      <div class="volume-slider">
+                                                          <div class="volume-percentage"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="play">
+                                      <p id="namee">Name: ${obj.name}</p>
+                                      <p id="genree" > Genre: ${obj.genre}</p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          
+                      `
+                     
+        }
+        
+       
+        mainDiv.innerHTML = content
+      
+        
+
+   
 }
+
+function myFilter(e) {
+    //console.log(e.target.value)
+    c=e.target.value
+    console.log(c);
+    if(c != "")
+        fetch('../server/genre.php?cgenre='+c)
+        .then(resp=>resp.json())
+        .then(data=>{
+            for (let index = 0; index < audioSources.length; index++) {
+                audioSources[index].pause() // audio leallitas
+            }
+        console.log(data)
+            feltolt(data);
+            setupContols()
+
+            
+        
+        })
+    
+
+    } 
 
 async function loadData(data){
     //3.
     feltolt(data)
+    
     //4.
     setupContols()
 }
+
 
 
 /*const audioSources = [
@@ -88,8 +143,10 @@ async function loadData(data){
   new Audio("https://firebasestorage.googleapis.com/v0/b/musicweb-4ddd7.appspot.com/o/ghost%20elozetes.mp3?alt=media&token=3f8fe80f-2c81-452a-9cdf-89d136bb9a7a")
 ]*/
 
+
 function setupContols(){
     let ap = document.querySelectorAll(".audio-player");
+    let toggle_play = document.querySelectorAll(".toggle-play");
     ap.forEach((audioPlayer, index) => {
     console.log(index);
     let audio = audioSources[index]
@@ -108,7 +165,7 @@ function setupContols(){
     //click on timeline to skip around
     const timeline = audioPlayer.querySelector(".timeline");
     timeline.addEventListener("click", e => {
-        console.log("asd");
+        console.log("");
         const timelineWidth = window.getComputedStyle(timeline).width;
         const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
         audio.currentTime = timeToSeek;
@@ -130,6 +187,11 @@ function setupContols(){
         audioPlayer.querySelector(".time .current").textContent = getTimeCodeFromNum(
         audio.currentTime
         );
+        if(progressBar.style.width == "100%"){
+            playBtn.classList.remove("pause");
+            playBtn.classList.add("play");
+            audio.pause();
+        }
     }, 500);
     
     //toggle between playing and pausing on button click
@@ -138,6 +200,13 @@ function setupContols(){
         "click",
         () => {
         if (audio.paused) {
+            // leallit az osszes audiot es visszaallitja a gomb ikonjat leallitott helyzetbe
+            for (let index = 0; index < ap.length; index++) {
+                audioSources[index].pause() // audio leallitas
+                toggle_play[index].classList.remove("pause"); // gomb visszaallitasa
+                toggle_play[index].classList.add("play"); // gomb visszaallitasa
+            }
+            //beallitja lejatszasra ay ikont es elinditja az audiot
             playBtn.classList.remove("play");
             playBtn.classList.add("pause");
             audio.play();

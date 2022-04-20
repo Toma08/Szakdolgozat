@@ -17,8 +17,8 @@
         </form>
         <div class="msg"></div>
         <form id="register"class="input-group registerform">
-            <input name="username" type="text" class="input-be" placeholder="Username" required>
-            <input name="email" type="email" class="input-be" placeholder="Email" required>
+            <input name="username" type="text" class="input-be" placeholder="Username" onblur="checkUsername(this)" required>
+            <input name="email" type="email" class="input-be" onblur="checkEmail(this)" placeholder="Email" required>
             <input name="password" type="password" class="input-be" placeholder="Password" required>
             <input type="checkbox" class="check-box" ><span>I agree to the terms</span>
             <button type="submit" class="submit-btn" onclick="registerFc(event)" >Register</button>
@@ -30,13 +30,24 @@
     <aside>
      <section>
          <footer class="footer-bottom">
-             <div style="background-color: black; height: 200px;" id="bottom" class="footer-bottom"></div>
+             <div style="height: 200px;" id="bottom" class="footer-bottom"></div>
              <p>copyright &copy;2022 Tamas Toth.  </p>
          </footer>
      </section>
  </aside>
    <script>
 
+
+/*function checkUsername(obj){
+        console.log("check",obj.value);
+        const formData=new FormData()
+        formData.set('type','checkUsername')
+        formData.set('username',obj.value)
+        fetch('../server/auth.php',{method:"POST",body:formData})
+            .then(resp=>resp.text())
+            .then(data=>console.log("szerverrol",data))
+
+}*/
    
     function loginJS(e){
         e.preventDefault()
@@ -83,9 +94,14 @@
     }
 
     function checkUsername(obj){
-        console.log(obj.value);
+        console.log("check",obj.value);
         const formData=new FormData(document.querySelector('form'))
         formData.set('type','checkUsername')
+        formData.set('username',obj.value)
+
+        for(let obj of formData){
+           console.log(obj);
+        }
        
            
         fetch('../server/auth.php',{method:"POST",body:formData})
@@ -106,6 +122,7 @@
         console.log(obj.value);
         const formData=new FormData(document.querySelector('form'))
         formData.set('type','checkEmail')
+        formData.set('email',obj.value)
        
            
         fetch('../server/auth.php',{method:"POST",body:formData})

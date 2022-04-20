@@ -5,8 +5,11 @@ header('Content-Type: application/json');
 
 
 require_once 'db.php';
-
-$sql="SELECT name ,id,genre,url,cpic,zip FROM mdata";
+$genre=$_GET['cgenre'];
+if($genre == "all")
+    $sql="SELECT genre,name,cpic,zip,url FROM mdata";
+else
+    $sql="SELECT genre,name,cpic,zip,url FROM mdata where genre='{$genre}'";
 
 
 

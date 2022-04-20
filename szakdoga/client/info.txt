@@ -1,3 +1,22 @@
 For more awesome CSS / HTML/ Javascript Code Examples & scripts visit now:
 
 https://codeconvey.com
+document.querySelector('select').addEventListener('change',myFilter)
+function myFilter(e) {
+    //console.log(e.target.value)
+    c=e.target.value
+    console.log(c);
+    
+    fetch('../server/genre.php?cgenre='+c)
+    .then(resp=>resp.json())
+    .then(data=>{
+      
+      console.log(data)
+        feltolt(data);
+    
+    })
+    
+
+    } 
+
+    encodeURIComponent // karakterkodá atalakitas 

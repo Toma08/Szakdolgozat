@@ -33,12 +33,15 @@ session_start();
     </style>
 </head>
 <body>
+    
 <div id="menu" class="container-fluid">
-        <nav  class="navbar navbar-expand-sm navbar-dark bg-black w-100">
+        <nav  class="navbar navbar-expand-sm navbar-dark bg-black w-100 pl-0 pr-0 row">
             <ul class="navbar-nav">
-                <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="index.php?program=music.php" class="nav-link">Samplepacks</a></li>
-                <li class="nav-item"><a href="index.php?program=music2.php" class="nav-link">Musics</a></li>
+                <li class="space"></li>
+                <li class="nav-item"><a href="index.php" class="nav-link"><img class="logo img-fluid w-100"  src="logoka.png" alt=""></a></li>
+               
+                <li class="nav-item"><a href="index.php?program=music.php" class="nav-link">Sample Packs</a></li>
+                <li class="nav-item"><a href="index.php?program=music2.php" class="nav-link">Music</a></li>
 
                 <?php 
                     if(isset($_SESSION['username'])):
@@ -59,7 +62,7 @@ session_start();
         </nav>
     </div>
     
-    <div  >
+    <div class="container-fluid p-0 m-0" >
     <?php
         if(isset($_GET["program"]))
             include $_GET["program"];
@@ -70,7 +73,10 @@ session_start();
         ?>
         
 
+        <div class="particle-js">
     </div>
+    </div>
+    <script src="cs/particles.js">  </script>
     <script src="red.js"></script>
 </body>
 </html>

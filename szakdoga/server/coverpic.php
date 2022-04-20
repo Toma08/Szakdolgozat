@@ -6,8 +6,7 @@ header('Content-Type: application/json');
 
 require_once 'db.php';
 
-$sql="SELECT name ,id,genre,url,cpic,zip FROM mdata";
-
+$sql="SELECT name ,id,url FROM coverpic";
 
 
 $stmt=$db->query($sql);
