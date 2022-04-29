@@ -27,7 +27,7 @@ fetch('../server/audio.php')
 
 
 
-
+let rand=Math.floor(Math.random()*174)
 
 let audioSources=[]
 
@@ -38,7 +38,7 @@ function feltolt(data){
     audioSources=[]
     let content = ""
     
-    
+   /* $sql="SELECT musicdata.genreid,genres.genrename as genre,musicdata.name,musicdata.cpicurl,musicdata.zipurl,musicdata.musicurl,musicdata.bpm as bpersec FROM musicdata inner join genres on musicdata.genreid=genres.id";*/
 
    
                 
@@ -49,16 +49,16 @@ function feltolt(data){
            
             
             //console.log(obj.name);
-          audioSources.push(new Audio(obj.url))
+          audioSources.push(new Audio(obj.musicurl))
           content += `
   
                           <div class="nav2 col-lg p-0  ">
                           
                               <div class="box ">
                                   <div class="imgdiv">
-                                      <img src="${obj.cpic} ">
-                                      +<div class="Scriptcontent">
-                                          <div class="audio-player" style="margin: 0 auto">
+                                      <img src="${obj.cpicurl} ">
+                                      <div class="Scriptcontent">
+                                          <div class="audio-player w-100" style="margin: 0 auto">
                                               <div class="timeline">
                                                   <div class="progress"></div>
                                               </div>
@@ -87,6 +87,8 @@ function feltolt(data){
                                   <div class="play">
                                       <p id="namee">Name: ${obj.name}</p>
                                       <p id="genree" > Genre: ${obj.genre}</p>
+                                      <p id="genree" > Bpm: ${obj.bpersec}</p>
+
                                   </div>
                               </div>
                           </div>

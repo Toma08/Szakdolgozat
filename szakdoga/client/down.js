@@ -54,7 +54,7 @@ function feltolt(data){
 
     
           <div id="imgdiv" class="card " style="width: 15rem;  ">
-              <img src="${obj.cpic}" class="card-img-top" alt="...">
+              <img src="${obj.cpicurl}" class="card-img-top" alt="...">
               <div id="play"  class="card-body rounded" style="background-color: rgb(26, 26, 26); height: 7rem;">
                 <center> <h5 class="card-title  " style="color: aliceblue;">${obj.name}</h5></center>
                 <center> <h10 class="card-title text-danger">You need to log in to get this file</h10></center>

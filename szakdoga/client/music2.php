@@ -3,22 +3,20 @@
 <div class="bev1">
     <div class="container pt-5 ">
          <div class="row">
-            <div class="col-3">
+            <div class="col">
                 <h1>Tamas Toth</h1>
                 <h1>Music and Demos</h1>
                 <p>These are my recent demos and some of my realased music</p>
             </div>
-            <div class="col-7">
-                <h1></h1>
-            </div>
-            <div class="col-1">
+            <div class="col">
                 <select class="custom-select " name="" id="op" style="float:right;">
                     <option value="">select genre</option>
                     <option value="all">All</option>
-                    <option value="Bass House">Bass House</option>
-                    <option value="Drum and Bass">Drum and Bass</option>
+                    <option value="1">Bass House</option>
+                    <option value="2">Drum and Bass</option>
                     <option value="Future Bass">Future Bass</option>
                     <option value="Future House">Future House</option>
+                    <option value="4">Slap House</option>
                     <option value="House">House</option>
                     <option value="Trap">Trap</option>
                     <option value="Chill Beat">Chill Beat</option>
@@ -53,9 +51,7 @@
 
 
   </main>
- <div class="nagy">
-     <h1></h1>
- </div>
+ 
 <aside>
      <section>
          <footer class="footer-bottom">

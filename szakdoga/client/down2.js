@@ -54,11 +54,11 @@ function feltolt(data){
 
     
           <div id="imgdiv" class="card " style="width: 15rem;  ">
-              <img src="${obj.cpic}" class="card-img-top" alt="...">
+              <img src="${obj.cpicurl}" class="card-img-top" alt="...">
               <div id="play"  class="card-body rounded" style="background-color: rgb(26, 26, 26); height: 6rem;">
                 <center> <h5 class="card-title  " style="color: aliceblue;">${obj.name}</h5></center>
                
-                <center><a  href="https://drive.google.com/u/0/uc?id=12TVM2Hp1K8iY-MiRJgU82vMwg89DVpQ1&export=download" class="btn btn-primary" style="margin:0px auto;">Download</a></center>
+                <center><a  href="${obj.zipurl}" class="btn btn-primary" style="margin:0px auto;">Download</a></center>
               
               </div>
             </div>

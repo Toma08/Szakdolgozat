@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 
 require_once 'db.php';
 
-$sql="SELECT name ,id,genre,url,cpic,zip FROM mdata";
+$sql="SELECT musicdata.name ,musicdata.id,genres.genrename as genre,musicdata.musicurl,musicdata.cpicurl,musicdata.zipurl,musicdata.bpm as bpersec FROM musicdata inner join genres on musicdata.genreid=genres.id";
 
 
 

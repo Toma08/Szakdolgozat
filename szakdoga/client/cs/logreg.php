@@ -1,6 +1,6 @@
 
 <div id="particles-js">
-<div class="form-box">
+<div class="form-box ">
 
         <div class="button-box">
             <div id="btn"></div>
@@ -11,7 +11,7 @@
             <input type="text" class="input-be" placeholder="Username" name="username" required>
             <input type="password" class="input-be" placeholder="Password" name="password" required>
             <div class="d-flex">
-                <input type="checkbox" class="check-box" ><span>Remember password</span>
+               
             </div>
             <button type="submit" class="submit-btn" onclick="loginJS(event)">Log in</button>
         </form>
@@ -20,7 +20,6 @@
             <input name="username" type="text" class="input-be" placeholder="Username" onblur="checkUsername(this)" required>
             <input name="email" type="email" class="input-be" onblur="checkEmail(this)" placeholder="Email" required>
             <input name="password" type="password" class="input-be" placeholder="Password" required>
-            <input type="checkbox" class="check-box" ><span>I agree to the terms</span>
             <button type="submit" class="submit-btn" onclick="registerFc(event)" >Register</button>
         </form>
     </div>
@@ -142,19 +141,55 @@
    </script>
 
 <script>
+      /*
+      */
+     
         let a=document.getElementById("login");
         let b=document.getElementById("register");
         let c=document.getElementById("btn");
-        function register(){
-            a.style.left="-400px"
-            b.style.left="65px"
-            c.style.left="120px"
-        }
-        function login(){
+        const x = window.matchMedia("(max-width: 426px)")
+        
+      register(x) // Call listener function at run time
+      login(x) // Call listener function at run time
+      x.addListener(register) // Attach listener function on state changes
+      x.addListener(login) // Attach listener function on state changes
+        
+
+      function login(){
+          if(x.matches){
+            a.style.left="23px"
+            b.style.left="450px"
+            c.style.left="0px"
+          }else{
             a.style.left="65px"
             b.style.left="450px"
             c.style.left="0px"
+          }
+            
+           
         }
+
+       function register(){
+
+          if(x.matches){
+            a.style.left="-400px"
+            b.style.left="23px"
+            c.style.left="120px"
+          }else{
+            a.style.left="-400px"
+            b.style.left="65px"
+            c.style.left="120px"
+          }
+            
+            
+        }
+
+       
+
+        
+
+      
+
     </script>
 
     <script src="cs/particles.js">  </script>

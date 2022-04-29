@@ -7,9 +7,9 @@ header('Content-Type: application/json');
 require_once 'db.php';
 $genre=$_GET['cgenre'];
 if($genre == "all")
-    $sql="SELECT genre,name,cpic,zip,url FROM mdata";
+    $sql="SELECT musicdata.name ,musicdata.id,genres.genrename as genre,musicdata.musicurl,musicdata.cpicurl,musicdata.zipurl,musicdata.bpm as bpersec FROM musicdata inner join genres on musicdata.genreid=genres.id";
 else
-    $sql="SELECT genre,name,cpic,zip,url FROM mdata where genre='{$genre}'";
+    $sql="SELECT musicdata.name ,musicdata.id,genres.genrename as genre,musicdata.musicurl,musicdata.cpicurl,musicdata.zipurl,musicdata.bpm as bpersec FROM musicdata inner join genres on musicdata.genreid=genres.id where genreid='{$genre}'";
 
 
 
