@@ -1,0 +1,54 @@
+.navba{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(25, 25, 25);
+    color: white;
+    height: 3rem;
+}
+.toggle-button{
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+
+}
+.toggle-butto .bar{
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+@media(max-width: 426px){
+    .toggle-button{
+        display: flex;
+    }
+    .navba-links{
+        display: none;
+    }
+    .form-box{
+        width: 320px !important;
+        margin: 0px auto !important;
+        padding: 0px !important;
+    }
+    #login{
+        left: 25px;
+        
+    }
+    #register{
+        /*left: 400px !important;*/
+        
+       
+    }
+    
+    element.style{
+          left: 0px;  
+    }
+    
+}
