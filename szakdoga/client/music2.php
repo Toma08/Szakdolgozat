@@ -1,5 +1,3 @@
-        
-
 <div class="bev1">
     <div class="container pt-5 ">
          <div class="row">
@@ -15,19 +13,16 @@
                     <option value="1">Bass House</option>
                     <option value="2">Drum and Bass</option>
                     <option value="Future Bass">Future Bass</option>
-                    <option value="Future House">Future House</option>
+                    <option value="3">Future House</option>
                     <option value="4">Slap House</option>
-                    <option value="House">House</option>
+                    <option value="5">House</option>
                     <option value="Trap">Trap</option>
-                    <option value="Chill Beat">Chill Beat</option>
+                    <option value="7">Chill Beat</option>
+                    <option value="9">Riddim</option>
                 </select>
             </div>
         </div>
-        
-    </div>
-       
-
-      
+</div>
 
 <div class="custom-shape-divider-bottom-1650369722">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -37,7 +32,6 @@
     </svg>
 </div>
 </div>
-
 
 <main class="main-div d-flex row m-0">
 
@@ -49,8 +43,7 @@
     </svg>
 </div>
 
-
-  </main>
+</main>
  
 <aside>
      <section>
@@ -60,9 +53,6 @@
          </footer>
      </section>
  </aside>
- 
-       
-        
 
 <script src="js/player.js"></script>
 

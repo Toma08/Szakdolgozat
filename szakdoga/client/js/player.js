@@ -1,17 +1,9 @@
-// Possible improvements:
-// - Change timeline and volume slider into input sliders, reskinned
-// - Change into Vue or React component
-// - Be able to grab a custom title instead of "Music Song"
-// - Hover over sliders to see preview of timestamp/volume change
-
-/*
+/*jegyzet
 1. kikerjuk adatbazisbol a zenek adatait
 2. Adat betolto fuggvenyt meghivjuk
 3. Zenek url-jet betoltjuk egy tombbe es legeneraljuk a html elemeket + beilleszti a main-div-be
 4. A logikat hozzarendeli a lejatszokhoz
-
 */
-
 
 const mainDiv = document.querySelector(".main-div");
 //1
@@ -19,41 +11,25 @@ fetch('../server/audio.php')
 .then(resp=>resp.json())
 .then(data=>{
   
-  console.log(data)
+  //console.log(data)
   //2.
   loadData(data)
 
 })
 
-
-
-let rand=Math.floor(Math.random()*174)
-
 let audioSources=[]
-
 
 function feltolt(data){
     document.querySelector('select').addEventListener('change',myFilter)
     let c=""
     audioSources=[]
     let content = ""
-    
-   /* $sql="SELECT musicdata.genreid,genres.genrename as genre,musicdata.name,musicdata.cpicurl,musicdata.zipurl,musicdata.musicurl,musicdata.bpm as bpersec FROM musicdata inner join genres on musicdata.genreid=genres.id";*/
-
-   
-                
-  
 
         for(let obj of data){
-
-           
-            
-            //console.log(obj.name);
+          //console.log(obj.name);
           audioSources.push(new Audio(obj.musicurl))
           content += `
-  
                           <div class="nav2 col-lg p-0  ">
-                          
                               <div class="box ">
                                   <div class="imgdiv">
                                       <img src="${obj.cpicurl} ">
@@ -88,24 +64,15 @@ function feltolt(data){
                                       <p id="namee">Name: ${obj.name}</p>
                                       <p id="genree" > Genre: ${obj.genre}</p>
                                       <p id="genree" > Bpm: ${obj.bpersec}</p>
-
                                   </div>
                               </div>
-                          </div>
-
-                          
-                      `
-                     
+                          </div>   
+                      `        
         }
-        
-       
         mainDiv.innerHTML = content
-      
-        
-
-   
 }
 
+//szures
 function myFilter(e) {
     //console.log(e.target.value)
     c=e.target.value
@@ -120,12 +87,7 @@ function myFilter(e) {
         console.log(data)
             feltolt(data);
             setupContols()
-
-            
-        
         })
-    
-
     } 
 
 async function loadData(data){
@@ -136,15 +98,12 @@ async function loadData(data){
     setupContols()
 }
 
-
-
 /*const audioSources = [
   new Audio("https://firebasestorage.googleapis.com/v0/b/musicweb-4ddd7.appspot.com/o/sick%20dropl.mp3?alt=media&token=da990866-d9b9-44da-93a3-9dfd928cf463"),
   new Audio("https://firebasestorage.googleapis.com/v0/b/musicweb-4ddd7.appspot.com/o/cheap%20melody.mp3?alt=media&token=b8eb7b02-80a4-4666-9237-80a1646c75dc"),
   new Audio("https://firebasestorage.googleapis.com/v0/b/musicweb-4ddd7.appspot.com/o/groovy%20bass%20%20drop.mp3?alt=media&token=00419edc-5951-4a4c-9be8-7d10e945f7b2"),
   new Audio("https://firebasestorage.googleapis.com/v0/b/musicweb-4ddd7.appspot.com/o/ghost%20elozetes.mp3?alt=media&token=3f8fe80f-2c81-452a-9cdf-89d136bb9a7a")
 ]*/
-
 
 function setupContols(){
     let ap = document.querySelectorAll(".audio-player");
@@ -202,13 +161,13 @@ function setupContols(){
         "click",
         () => {
         if (audio.paused) {
-            // leallit az osszes audiot es visszaallitja a gomb ikonjat leallitott helyzetbe
+            // leallitja az osszes audiot es visszaallitja a gomb ikonjat leallitott helyzetbe
             for (let index = 0; index < ap.length; index++) {
                 audioSources[index].pause() // audio leallitas
                 toggle_play[index].classList.remove("pause"); // gomb visszaallitasa
                 toggle_play[index].classList.add("play"); // gomb visszaallitasa
             }
-            //beallitja lejatszasra ay ikont es elinditja az audiot
+            //beallitja lejatszasra az ikont es elinditja az audiot
             playBtn.classList.remove("play");
             playBtn.classList.add("pause");
             audio.play();

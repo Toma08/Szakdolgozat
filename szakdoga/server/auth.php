@@ -18,8 +18,6 @@ if($_SERVER['REQUEST_METHOD']== 'POST' && $_POST['type']=='login')
    login($db);
    
 function register($db){
- 
-
     extract($_POST);
     $pw=password_hash($password,PASSWORD_DEFAULT);
     $sql="insert into users (username,email,password) values(?,?,?)";
